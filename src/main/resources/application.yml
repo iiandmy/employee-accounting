@@ -2,7 +2,13 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/employee-accounting
     username: postgres
-    password: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
   mvc:
     hiddenmethod:
       filter:

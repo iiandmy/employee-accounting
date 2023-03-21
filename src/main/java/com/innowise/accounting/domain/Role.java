@@ -1,10 +1,7 @@
 package com.innowise.accounting.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Set;
 
@@ -12,6 +9,7 @@ import java.util.Set;
 @Table(name = "role")
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 @Getter
 @Setter
 public class Role {
@@ -22,8 +20,13 @@ public class Role {
     private String name;
 
     @ManyToMany
+    @JoinTable(
+            name = "role_permission",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "permission_id")
+    )
     private Set<Permission> permissionSet;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roleSet")
     private Set<Employee> employeeSet;
 }
