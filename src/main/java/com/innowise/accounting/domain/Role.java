@@ -3,6 +3,7 @@ package com.innowise.accounting.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -19,7 +20,7 @@ public class Role {
 
     private String name;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "role_permission",
             joinColumns = @JoinColumn(name = "role_id"),
@@ -28,5 +29,5 @@ public class Role {
     private Set<Permission> permissionSet;
 
     @ManyToMany(mappedBy = "roleSet")
-    private Set<Employee> employeeSet;
+    private List<Employee> employeeSet;
 }
