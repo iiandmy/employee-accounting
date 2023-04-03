@@ -4,10 +4,13 @@ import com.innowise.accounting.domain.Employee;
 import com.innowise.accounting.dto.EmployeeDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring")
+@Mapper
+@Component
 public interface EmployeeMapper {
-    @Mapping(target="")
+//    @Mapping()
     Employee toEntity(EmployeeDto employeeDto);
+    @Mapping(target = "departmentId", source = "employee.getDepartment().id")
     EmployeeDto toDto(Employee employee);
 }
